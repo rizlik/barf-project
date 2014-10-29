@@ -25,7 +25,8 @@ from core.smt.smtlibv2 import CVC4Solver
 from core.smt.smttranslator import SmtTranslator
 
 logging.basicConfig(
-    filename = os.path.dirname(os.path.realpath(__file__)) + os.sep + "log/barf." + str(int(time.time())) + ".log",
+#    filename = os.path.dirname(os.path.realpath(__file__)) + os.sep + "log/barf." + str(int(time.time())) + ".log",
+    filename = os.getcwd() + os.sep + "barf." + str(int(time.time())) + ".log",
     format = "%(asctime)s: %(name)s:%(levelname)s: %(message)s",
     level = logging.DEBUG
 )
