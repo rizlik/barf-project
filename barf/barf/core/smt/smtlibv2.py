@@ -942,7 +942,7 @@ class CVC4Solver(object):
         self._constraints = set()
         self.input_symbols = list()
 
-        self._proc = Popen('/home/cnheitman/downloads/cvc4-1.4-x86_64-linux-opt --incremental --lang=smt2', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
+        self._proc = Popen('cvc4 --incremental --lang=smt2', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
 
         # self._proc = Popen('z3 -t:120 -smt2 -in', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
         #self._proc = Popen('stp --SMTLIB2', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
@@ -972,14 +972,14 @@ class CVC4Solver(object):
         self.input_symbols = state['input_symbols']
         #self._proc = Popen('z3 -smt2 -in', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
         #self._proc = Popen('stp --SMTLIB2', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
-        self._proc = Popen('/home/cnheitman/downloads/cvc4-1.4-x86_64-linux-opt --incremental --lang=smt2', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
+        self._proc = Popen('cvc4 --incremental --lang=smt2', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
 
     def reset(self, full=False):
         self._proc.kill()
         self._proc.wait()
         self._proc = None
 
-        self._proc = Popen('/home/cnheitman/downloads/cvc4-1.4-x86_64-linux-opt --incremental --lang=smt2', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
+        self._proc = Popen('cvc4 --incremental --lang=smt2', shell=True, stdin=PIPE, stdout=PIPE)        #'stp --SMTLIB2'
         # self._proc = Popen('z3 -t:120 -smt2 -in', shell=True, stdin=PIPE, stdout=PIPE)        # 'stp --SMTLIB2'
         # self._proc = Popen('stp --SMTLIB2', shell=True, stdin=PIPE, stdout=PIPE)              # 'stp --SMTLIB2'
 
