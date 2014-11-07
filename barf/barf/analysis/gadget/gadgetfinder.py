@@ -164,7 +164,7 @@ class GadgetFinder(object):
         """
         node_list = self._build_gadgets_rec(gadget_tree_root)
 
-        return [RawGadget(n) for n in node_list]
+        return [RawGadget(n[i:]) for n in node_list for i in xrange(len(n) - 1)]
 
     def _build_gadgets_rec(self, gadget_tree_root):
         """Build a gadget from a gadget tree.
