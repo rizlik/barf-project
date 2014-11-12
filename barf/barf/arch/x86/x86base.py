@@ -258,6 +258,7 @@ class X86ArchitectureInformation(ArchitectureInformation):
                 "dl" : ("edx", 0x000000ff, 0),
                 "dh" : ("edx", 0x0000ff00, 8),
                 "dx" : ("edx", 0x0000ffff, 0),
+                "bp" : ("ebp", 0x0000ffff, 0)
 
                 # flags
                 "cf": ("eflags", 0x00000001, 0),  # bit 0
@@ -267,6 +268,7 @@ class X86ArchitectureInformation(ArchitectureInformation):
                 "sf": ("eflags", 0x00000080, 7),  # bit 7
                 "df": ("eflags", 0x00000400, 10), # bit 10
                 "of": ("eflags", 0x00000800, 11), # bit 11
+
             }
         else:
             mapper = {
