@@ -73,6 +73,8 @@ class GadgetClassifier(object):
         # Number of simulation iterations.
         self._emu_iters = 10
 
+        self._regs_fixed_value = {}
+
     def classify(self, gadget):
         """Classify gadget.
         """
@@ -474,7 +476,9 @@ class GadgetClassifier(object):
                                         "src" : [dst_reg_ir, dst_off_ir, \
                                             src_reg_ir],
                                         "dst" : [dst_reg_ir, dst_off_ir],
-                                        "op"  : op_name
+                                        "op"  : op_name,
+                                        "op_size" : size,
+                                        "read_regs" : read_regs
                                     })
 
         # Check for "m[offset] <- m[offset] OP src_reg" pattern.
@@ -502,7 +506,10 @@ class GadgetClassifier(object):
                                 matchings.append({
                                     "src" : [dst_reg_ir, dst_off_ir, src_reg_ir],
                                     "dst" : [dst_reg_ir, dst_off_ir],
-                                    "op"  : op_name
+                                    "op"  : op_name,
+                                    "op_size" : size,
+                                    "read_regs" : read_regs
+
                                 })
 
         return matchings
@@ -526,6 +533,8 @@ class GadgetClassifier(object):
             # Generate random values for registers.
             regs_initial = self._init_regs_random()
 
+            for r, v in self._regs_fixed_value.iteritems():
+                regs_initial[r] = v
             # Emulate gadget.
             try:
                 regs_final, mem_final = self._ir_emulator.execute_lite(
@@ -601,6 +610,9 @@ class GadgetClassifier(object):
 
         return classified_candidates, list(modified_regs)
 
+    def set_reg_init(self, regs):
+        self._regs_fixed_value = regs
+
     def _create_typed_gadgets(self, gadget, classified_gadgets, modified_regs, \
         gadget_type):
         typed_gadgets = []
@@ -624,6 +636,10 @@ class GadgetClassifier(object):
             if gadget_type in [GadgetType.Arithmetic, \
                 GadgetType.ArithmeticLoad, GadgetType.ArithmeticStore]:
                 typed_gadget.operation = candidate["op"]
+
+            if gadget_type == GadgetType.ArithmeticStore:
+                typed_gadget.operation_size = candidate['op_size']
+                typed_gadget.read_registers = candidate['read_regs']
 
             if candidate.get("op", "") != "nop":
                 typed_gadget.sources = candidate["src"]
