@@ -258,7 +258,10 @@ class X86ArchitectureInformation(ArchitectureInformation):
                 "dl" : ("edx", 0x000000ff, 0),
                 "dh" : ("edx", 0x0000ff00, 8),
                 "dx" : ("edx", 0x0000ffff, 0),
-                "bp" : ("ebp", 0x0000ffff, 0)
+                "bp" : ("ebp", 0x0000ffff, 0),
+                "si" : ("esi", 0x0000ffff, 0),
+                "di" : ("edi", 0x0000ffff, 0),
+
 
                 # flags
                 "cf": ("eflags", 0x00000001, 0),  # bit 0
