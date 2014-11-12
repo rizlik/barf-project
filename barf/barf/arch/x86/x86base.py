@@ -230,6 +230,7 @@ class X86ArchitectureInformation(ArchitectureInformation):
                 "dl" : ("edx", 0x000000ff, 0),
                 "dh" : ("edx", 0x0000ff00, 8),
                 "dx" : ("edx", 0x0000ffff, 0),
+                "bp" : ("ebp", 0x0000ffff, 0)
             }
         else:
             mapper = {
