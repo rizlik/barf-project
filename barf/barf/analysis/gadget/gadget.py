@@ -241,7 +241,8 @@ class TypedGadget(RawGadget):
     # Misc
     # ======================================================================== #
     def __getattr__(self, name):
-        return getattr(self._gadget, name)
+        if '_gadget' in self.__dict__:
+            return getattr(self._gadget, name)
 
 
 class GadgetType(object):
