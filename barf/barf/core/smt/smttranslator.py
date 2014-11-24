@@ -568,7 +568,7 @@ class SmtTranslator(object):
         if oprnd1.size == oprnd3.size:
             expr = (op1_var == op3_var)
         elif oprnd1.size < oprnd3.size:
-            expr = (op1_var == smtlibv2.EXTRACT(op3_var, 0, op1_var.size))
+            expr = (smtlibv2.SEXTEND(op1_var, oprnd1.size, oprnd3.size) == op3_var)
         else:
             expr = (smtlibv2.EXTRACT(op1_var, 0, op3_var.size) == op3_var)
 
