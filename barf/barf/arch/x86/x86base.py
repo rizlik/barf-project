@@ -377,11 +377,9 @@ class X86InstructionBase(object):
         '_flags_affected',
         '_address',
         '_arch_mode',
+        '__dict__'
     ]
 
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
 
     def __init__(self, prefix, mnemonic, operands, arch_mode):
         self._prefix = prefix
@@ -487,11 +485,8 @@ class X86Operand(object):
     __slots__ = [
         '_modifier',
         '_size',
+        '__dict__'
     ]
-
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
 
 
     def __init__(self, modifier):
@@ -523,12 +518,8 @@ class X86ImmediateOperand(X86Operand):
     """Representation of x86 immediate operand."""
 
     __slots__ = [
-        '_immediate'
+        '_immediate',
     ]
-
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
 
 
     def __init__(self, immediate):
@@ -571,10 +562,6 @@ class X86RegisterOperand(X86Operand):
         '_size',
     ]
 
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
-
 
     def __init__(self, name, size=None):
         super(X86RegisterOperand, self).__init__("")
@@ -612,10 +599,6 @@ class X86MemoryOperand(X86Operand):
         '_scale',
         '_displacement',
     ]
-
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
 
 
     def __init__(self, segment, base, index, scale, displacement):

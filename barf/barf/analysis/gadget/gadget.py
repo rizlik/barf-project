@@ -23,10 +23,6 @@ class RawGadget(object):
         '__dict__'
     ]
 
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
-
 
     def __init__(self, instrs):
 
@@ -99,10 +95,6 @@ class TypedGadget(RawGadget):
         '_is_valid',
         '_operation',
     ]
-
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
 
     def __init__(self, gadget, gadget_type):
 

@@ -538,7 +538,7 @@ class GadgetClassifier(object):
                 if r in rm:
                     rpn, m, s = rm[r]
                     rpv = regs_initial[rpn] & ~m
-                    v = rpv & (v << s)
+                    v = rpv ^ (v << s)
 
                 regs_initial[rpn] = v
 

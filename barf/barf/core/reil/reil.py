@@ -183,11 +183,8 @@ class ReilInstruction(object):
         '_operands',
         '_comment',
         '_address',
+        '__dict__'
     ]
-
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
 
     def __init__(self):
 
@@ -297,12 +294,8 @@ class ReilOperand(object):
     __slots__ = [
         '_size',
         '_tag',
+        '__dict__'
     ]
-
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
-
 
     def __init__(self, size):
 
@@ -358,10 +351,6 @@ class ReilImmediateOperand(ReilOperand):
         '_immediate',
     ]
 
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
-
     def __init__(self, immediate, size=None):
         super(ReilImmediateOperand, self).__init__(size)
 
@@ -412,10 +401,6 @@ class ReilRegisterOperand(ReilOperand):
     __slots__ = [
         '_name',
     ]
-
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
 
 
     def __init__(self, name, size=None):
@@ -597,11 +582,8 @@ class DualInstruction(object):
         '_address',
         '_asm_instr',
         '_ir_instrs',
+        '__dict__'
     ]
-
-    def __getstate__(self):
-        _dict = { s: getattr(self, s) for s in self.__slots__ }
-        return _dict
 
 
     def __init__(self, address, asm_instr, ir_instrs):
