@@ -534,7 +534,8 @@ class GadgetClassifier(object):
 
             #patch for setting special reg values for register
             rm = self._arch_info.register_access_mapper()
-            for r, v in self._regs_fixed_value.iteritems():                            if r in:
+            for r, v in self._regs_fixed_value.iteritems():   
+                if r in rm:
                     rpn, m, s = rm[r]
                     rpv = regs_initial[rpn] & ~m
                     v = rpv & (v << s)
