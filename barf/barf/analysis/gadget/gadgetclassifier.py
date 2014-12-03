@@ -10,7 +10,6 @@ This algorithm is architecture agnostic since it operates on the IR
 representation of the underlying assembly code.
 
 """
-
 import random
 
 from barf.analysis.gadget import GadgetType
@@ -533,8 +532,15 @@ class GadgetClassifier(object):
             # Generate random values for registers.
             regs_initial = self._init_regs_random()
 
-            for r, v in self._regs_fixed_value.iteritems():
-                regs_initial[r] = v
+            #patch for setting special reg values for register
+            rm = self._arch_info.register_access_mapper()
+            for r, v in self._regs_fixed_value.iteritems():                            if r in:
+                    rpn, m, s = rm[r]
+                    rpv = regs_initial[rpn] & ~m
+                    v = rpv & (v << s)
+
+                regs_initial[rpn] = v
+
             # Emulate gadget.
             try:
                 regs_final, mem_final = self._ir_emulator.execute_lite(

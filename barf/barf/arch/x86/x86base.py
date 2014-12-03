@@ -379,6 +379,10 @@ class X86InstructionBase(object):
         '_arch_mode',
     ]
 
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
     def __init__(self, prefix, mnemonic, operands, arch_mode):
         self._prefix = prefix
         self._mnemonic = mnemonic
@@ -485,6 +489,11 @@ class X86Operand(object):
         '_size',
     ]
 
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
+
     def __init__(self, modifier):
         self._modifier = modifier
         self._size = None
@@ -516,6 +525,11 @@ class X86ImmediateOperand(X86Operand):
     __slots__ = [
         '_immediate'
     ]
+
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
 
     def __init__(self, immediate):
         super(X86ImmediateOperand, self).__init__("")
@@ -557,6 +571,11 @@ class X86RegisterOperand(X86Operand):
         '_size',
     ]
 
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
+
     def __init__(self, name, size=None):
         super(X86RegisterOperand, self).__init__("")
 
@@ -593,6 +612,11 @@ class X86MemoryOperand(X86Operand):
         '_scale',
         '_displacement',
     ]
+
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
 
     def __init__(self, segment, base, index, scale, displacement):
         super(X86MemoryOperand, self).__init__("")

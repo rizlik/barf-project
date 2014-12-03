@@ -185,6 +185,10 @@ class ReilInstruction(object):
         '_address',
     ]
 
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
     def __init__(self):
 
         # A REIL mnemonic
@@ -295,6 +299,11 @@ class ReilOperand(object):
         '_tag',
     ]
 
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
+
     def __init__(self, size):
 
         # Size of the operand, in bits.
@@ -349,6 +358,10 @@ class ReilImmediateOperand(ReilOperand):
         '_immediate',
     ]
 
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
     def __init__(self, immediate, size=None):
         super(ReilImmediateOperand, self).__init__(size)
 
@@ -399,6 +412,11 @@ class ReilRegisterOperand(ReilOperand):
     __slots__ = [
         '_name',
     ]
+
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
 
     def __init__(self, name, size=None):
         super(ReilRegisterOperand, self).__init__(size)
@@ -580,6 +598,11 @@ class DualInstruction(object):
         '_asm_instr',
         '_ir_instrs',
     ]
+
+    def __getstate__(self):
+        _dict = { s: getattr(self, s) for s in self.__slots__ }
+        return _dict
+
 
     def __init__(self, address, asm_instr, ir_instrs):
 
